@@ -121,14 +121,9 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 AUTH_USER_MODEL = 'users.User'
 
-CSRF_COOKIE_HTTPONLY = False
-
-CSRF_COOKIE_SECURE = False
-
 CSRF_TRUSTED_ORIGINS = ['http://*']
 
 ALLOWED_HOSTS = ['localhost', '127.0.0.1']
 
-CSRF_USE_SESSIONS = True
 
 
