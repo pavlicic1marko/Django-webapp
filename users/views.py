@@ -65,7 +65,10 @@ class HomeView(APIView):
 class LogoutView(APIView):
     def post(self, request):
         response = Response()
-        response.data = {'test'}
+        response.delete_cookie('jwt')
+        response.data = {
+            'message':'user is logged out'
+        }
 
         return response
 
