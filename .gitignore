@@ -3,3 +3,6 @@
 /Pipfile
 /Pipfile.lock
 /users/migrations/0001_initial.py
+/Scripts/python.exe
+/Scripts/pythonw.exe
+/pyvenv.cfg
