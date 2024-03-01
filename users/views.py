@@ -62,6 +62,14 @@ class HomeView(APIView):
 
         return Response(serializer.data)
 
+class LogoutView(APIView):
+    def post(self, request):
+        response = Response()
+        response.data = {'test'}
+
+        return response
+
+
 
 
 
