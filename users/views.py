@@ -44,3 +44,12 @@ class LoginView(APIView):
         }
 
         return response
+
+class HomeView(APIView):
+     def get(self, request):
+        token = request.COOKIES.get('jwt')
+
+
+        return Response(token)
+
+
