@@ -74,6 +74,10 @@ class LogoutView(APIView):
 
 
 
+class UserByIdView(APIView):
+    def get(self, request, id=id):
+        user = User.objects.filter(id=id).first()
+        serializer = UserSerializer(user)
 
-
+        return Response(serializer.data)
 
