@@ -2,3 +2,4 @@
 /.idea/.gitignore
 /Pipfile
 /Pipfile.lock
+/users/migrations/0001_initial.py
