@@ -45,6 +45,7 @@ class LoginView(APIView):
 
         return response
 
+
 class HomeView(APIView):
      def get(self, request):
         token = request.COOKIES.get('jwt')
@@ -62,6 +63,7 @@ class HomeView(APIView):
 
         return Response(serializer.data)
 
+
 class LogoutView(APIView):
     def post(self, request):
         response = Response()
@@ -72,6 +74,33 @@ class LogoutView(APIView):
 
         return response
 
+
+class UserByIdView(APIView):
+    def get(self, request, id=id):
+        user = User.objects.filter(id=id).first()
+        serializer = UserSerializer(user)
+
+        return Response(serializer.data)
+
+    def delete(self, request, id=id):
+        user = User.objects.filter(id=id).first()
+        serializer = UserSerializer(user)
+        user.delete()
+
+        return Response(serializer.data)
+
+    def patch(self, request, id=id):
+        email = request.data['email']
+        name = request.data['name']
+        password = request.data['password']
+        user = User.objects.filter(id=id).first()
+        user.email = email
+        user.name = name
+        user.set_password(password)
+        user.save()
+
+        serializer = UserSerializer(user)
+        return Response(serializer.data)
 
 
 
