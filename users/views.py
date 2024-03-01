@@ -16,7 +16,7 @@ class RegisterView(APIView):
 
 
 class LoginView(APIView):
-    def post(self,request):
+    def post(self, request):
         email = request.data['email']
         password = request.data['password']
 
@@ -30,12 +30,17 @@ class LoginView(APIView):
 
         payload = {
             'id': user.id,
-            'exp':datetime.datetime.utcnow() + datetime.timedelta(60),
-            'iat':datetime.datetime.utcnow()
+            'exp': datetime.datetime.utcnow() + datetime.timedelta(60),
+            'iat': datetime.datetime.utcnow()
         }
 
-        token = jwt.encode(payload, 'secret', algorithm='HS256').encode('utf-8')  # TODO read secret from config fo not hardcode
+        token = jwt.encode(payload, 'secret', algorithm='HS256').encode(
+            'utf-8')  # TODO read secret from config fo not hardcode
 
-        return Response({
+        response = Response()
+        response.set_cookie(key='jwt', value=token, httponly=True)
+        response.data = {
             'jwt': token
-        })
+        }
+
+        return response
